@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React, { createRef, useState } from "react";
 import axios from "axios";
 
 // import Photo from "./Photo";
@@ -12,7 +12,8 @@ function App() {
 
     const { Title } = Typography;
     const { Header, Footer, Content } = Layout;
-
+    
+    const [images, setImages] = useState([]);
     
     const api_key= '469809d930183a99561ed770e378c9d4';
     const per_page= 30;
@@ -26,7 +27,6 @@ function App() {
     }
 
     const convertInImagesList = photos => {
-        const images = [];
         for (let i = 0; i < photos.length; i++) {
           if (photos[i].id) {
             const photoObj = {
@@ -51,11 +51,12 @@ function App() {
         }).then( response => {
             if (response.data.photos && response.data.photos.photo) {
                 const images = convertInImagesList(response.data.photos.photo)
-            return images
-                .map((item) => {
-                    item.photoURL = getPhotoURL(item);
-                    return item;
-                })
+                setImages(prevImages => {
+                    return {
+                        images: [...prevImages, images],
+
+                    }
+                  })
             }}
         )}
 
@@ -92,7 +93,13 @@ function App() {
                 </Form>
             </Header>
             <Content>
-                {/* <Photo /> */}
+            {
+                images.map(() => {
+                    return(
+                        <img src={photoObj.photoURL} key={photoObj.id} alt={photo.description._content} />   
+                    )
+                })
+            }     
             </Content>
             {/* <Footer id="">
                 Developed by PT &copy; 2020
