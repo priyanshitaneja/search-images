@@ -39,15 +39,16 @@ function App() {
         return images;
       }
 
-    const fetchPhotos = (tags) => {
-        tags = inputRef.current.value
-        console.log(tags)
+    const fetchPhotos = (tag) => {
+        tag = inputRef.current.value
+        console.log(tag)
         
-        const method = !tags ? 'flickr.photos.search' : 'flickr.photos.getRecent';
+        const method = !tag ? 'flickr.photos.search' : 'flickr.photos.getRecent';
         
-        axios.get(
-            `https://www.flickr.com/services/rest/&method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}&tags=${tag}`
-        ).then( response => {
+        axios({
+            method: 'GET',
+            url: `https://www.flickr.com/services/rest/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}&tags=${tag}`
+        }).then( response => {
             if (response.data.photos && response.data.photos.photo) {
                 const images = convertInImagesList(response.data.photos.photo)
             return images
