@@ -13,38 +13,50 @@ function App() {
     const { Title } = Typography;
     const { Header, Footer, Content } = Layout;
 
-    const DEFAULT_PARAMS = {
-        api_key: '469809d930183a99561ed770e378c9d4',
-        safe_search: 1,
-        per_page: 30,
-        format: 'json'
-    };
+    
+    const api_key= '469809d930183a99561ed770e378c9d4';
+    const per_page= 30;
+    const format= 'json';
+    const safe_search=1;
+
 
     const getPhotoURL = (photo) => {
         const {id, farm, secret, server} = photo;
         return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
     }
 
+    const convertInImagesList = photos => {
+        const images = [];
+        for (let i = 0; i < photos.length; i++) {
+          if (photos[i].id) {
+            const photoObj = {
+              id: photos[i].id,
+              url: getPhotoURL(photos[i]),
+            };
+            images.push(photoObj);
+          }
+        }
+        return images;
+      }
+
     const fetchPhotos = (tags) => {
         tags = inputRef.current.value
         console.log(tags)
+        
         const method = !tags ? 'flickr.photos.search' : 'flickr.photos.getRecent';
-        const params = {
-            ...DEFAULT_PARAMS,
-            method,
-            tags
-        };
-
-        axios.get('https://www.flickr.com/services/rest/', params)
-        .then((response) => {
-            const photos = response.photos.photo
-            return photos
+        
+        axios.get(
+            `https://www.flickr.com/services/rest/&method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}&tags=${tag}`
+        ).then( response => {
+            if (response.data.photos && response.data.photos.photo) {
+                const images = convertInImagesList(response.data.photos.photo)
+            return images
                 .map((item) => {
                     item.photoURL = getPhotoURL(item);
                     return item;
-                });
-        })
-    }
+                })
+            }}
+        )}
 
     const debounceFn = (func, time) => {
         let timeout;
