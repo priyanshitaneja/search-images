@@ -4,38 +4,5 @@ html, body {
     box-sizing: border-box;
 }
 
-Header {
-    background-color: teal;
-    color: white;
-    text-align: center;
-}
+   
 
-h1 {
-    margin: 0;
-    padding: 15px 0 5px 0;
-    letter-spacing: 1px;
-    font-size: 30px;
-}
-
-Input {
-    width: 250px;
-    font-size: 20px;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    padding: 5px 10px;
-    text-align: center;
-    box-shadow: none;
-    border: 1px solid #004646;
-    border-radius: 5px;
-}    
-
-Footer {
-    background-color: teal;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-align: center;
-    margin-top: 20px;
-    padding: 15px 0;
-}

@@ -1,0 +1,10 @@
+Footer {
+    background-color: teal;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px 0;
+}
