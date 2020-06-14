@@ -16,17 +16,11 @@ function App() {
     const format = 'json';
     const safe_search = 1;
 
-    this.setState = {
-        images: [],
-        // device_data: checkDevice.deviceStatus(),
-        // columns: getColumns(checkDevice.deviceStatus().screen_type),
-        search_text: '',
-        // nextPage: 1,
-        // hasMore: true,
-        loading: false,
-        // show_search_overlay: false,
-        search_keys: getDataFromLocalStorage(LOCAL_STORAGE.SEARCH_KEY, [])
-    }
+    const {images, setImages} = useState([]);
+    let searchText= "";
+    //let nextPage= 1;
+    //let hasMore= true;
+    let loading= false;
 
     // const inputRef = createRef();
 
@@ -37,16 +31,12 @@ function App() {
         return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
     }
 
-    const showMessage = (type, msg) => {
-        const Message = message[type];
-        Message(msg);
-    };
-
     const stopLoading = () => {
-        setState({ loading: false });
+        this.setState({ loading: false });
     }
 
     const ImagesList = photos => {
+        const images= []
         for (let i = 0; i < photos.length; i++) {
             if (photos[i].id) {
                 const photoObj = {
@@ -59,17 +49,8 @@ function App() {
         return images;
     }
 
-    fetchMorePhotos = () => {
-        const { search_text } = this.state;
-        if (search_text.length === 0) {
-            fetchPhotos()
-        } else {
-            fetchPhotos(search_text)
-        }
-    }
-
     const fetchPhotos = (tag, action) => {
-        tag = inputRef.current.value
+        // tag = inputRef.current.value
         console.log(tag)
 
         const method = !tag ? 'flickr.photos.search' : 'flickr.photos.getRecent';
@@ -81,15 +62,24 @@ function App() {
             if (action) action();
             if (response.data.photos && response.data.photos.photo) {
                 const images = ImagesList(response.data.photos.photo)
-                setImages(prevImages => {
+                this.setImages(prevImages => {
                     return {
                         images: [...prevImages, images]
                     }
                 })
             }
         }).catch(error => {
-            showMessage(error, 'Something went wrong, Please try again!');
+            this.showMessage(error, 'Something went wrong, Please try again!');
         });
+    }
+
+    const fetchMorePhotos = () => {
+        const { search_text } = this.state;
+        if (search_text.length === 0) {
+            fetchPhotos()
+        } else {
+            fetchPhotos(search_text)
+        }
     }
 
     const debounceFn = (func, time) => {
@@ -106,57 +96,56 @@ function App() {
     const handleSearch = tag => {
         this.setState({
             loading: true,
-            images: [],
-            next_page: 1,
-            has_more_images: true,
-            show_search_overlay: false
+            images: []
+            // nextPage: 1,
+            // hasMore: true
         }, () => {
             if (tag && tag.trim().length > 0) {
                 fetchPhotos(tag, stopLoading);
             }
+        })
+    }
 
-            return (
-                <Layout>
-                    <HeaderX
-                        search_text={search_text}
-                        show_search_overlay={show_search_overlay}
-                        onClickSearchKey={onClickSearchKey}
-                        search_keys={search_keys}
-                        onSearch={handleSearch}
-                        onChange={handleChange}
-                    />
-                    <Content>
-                        {/* {
-                            images.map(() => {
-                                return (
-                                    <img src={photoObj.photoURL} key={photoObj.id} alt={photo.description._content} />
-                                )
-                            })
-                        } */}
-                        {
-                            loading ?
-                                <Loader count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
-                                <InfiniteScroll
-                                    scrollableTarget="albumContainer"
-                                    dataLength={images.length} //This is important field to render the next data
-                                    hasMore={hasMore}
-                                    loader={<Loader />}
-                                    endMessage={
-                                        <div>
-                                            <b>
-                                                That's all we have for now!
-                                            </b>
-                                        </div>
-                                    }
-                                    next={fetchMoreImages}
-                                >
-                                    <Album columns={columns} images={images} />
-                                </InfiniteScroll>
-                        }
-                    </Content>
-                    <FooterX />
-                </Layout>
-            )
-        }
+    return (
+        <Layout>
+            <HeaderX 
+                onClickSearchKey={handleSearch}
+                // search_keys={search_keys}
+                onSearch={handleSearch}
+                onChange={handleChange}
+            />
+            <Content>
+                {/* {
+                    images.map(() => {
+                        return (
+                            <img src={photoObj.photoURL} key={photoObj.id} alt={photo.description._content} />
+                        )
+                    })
+                } */}
+                {/* {
+                    loading ?
+                        <Loader count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                        <InfiniteScroll
+                            scrollableTarget="albumContainer"
+                            dataLength={images.length} //This is important field to render the next data
+                            hasMore={hasMore}
+                            loader={<Loader />}
+                            endMessage={
+                                <div>
+                                    <b>
+                                        That's all we have for now!
+                                    </b>
+                                </div>
+                            }
+                            next={fetchMoreImages}
+                        >
+                            <Album columns={columns} images={images} />
+                        </InfiniteScroll>
+                } */}
+            </Content>
+            <FooterX />
+        </Layout>
+    )
+}
 
 export default App;

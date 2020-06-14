@@ -5,19 +5,19 @@ import "./Image.css";
 function Image () {
 
   onClickCard = () => {
-    const { img_data, onClick } = this.props;
-    onClick(img_data);
+    const { img, onClick } = this.props;
+    onClick(img);
   }
 
   render() {
-    const { img_data } = this.props;
+    const { img } = this.props;
     return (
       <div 
         className="imageCard" 
         onClick={onClickCard}>
         <div className="loading">
           <img 
-            src={img_data.url} 
+            src={img.url} 
             alt="" 
             style={{minHeight:'150px'}} />
         </div>
@@ -26,13 +26,8 @@ function Image () {
   }
 }
 
-Image.propTypes = {
-  img_data: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
-}
-
 Image.defaultProps = {
-  img_data: {}
+  img: {}
 }
 
 export default Image;

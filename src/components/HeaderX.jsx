@@ -1,10 +1,11 @@
 import React from "react";
 import "./header.css"
-import { Header, Form, Input, Typography } from "antd";
+import { Layout, Form, Input, Typography } from "antd";
 
-function HeaderX({ title, search_text, show_search_overlay, search_keys, onSearch, onChange, onClickSearchKey }) {
+function HeaderX({search_text, onSearch, onChange}) {
 
     const { Title } = Typography;
+    const { Header } = Layout;
 
     return (
         <Header>
