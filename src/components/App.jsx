@@ -3,9 +3,13 @@ import axios from "axios";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // import Photo from "./Photo";
-import "./App.css";
-import HeaderX from "./HeaderX";
+import '../styles/App.css';
+
+import SearchForm from './HeaderX';
 import FooterX from "./FooterX";
+import Loader from './Loader';
+import Error from './Error';
+import { searchPhotos } from '../state/actions/searchPhotos';
 
 import { Layout } from "antd";
 
@@ -16,7 +20,7 @@ function App() {
     const format = 'json';
     const safe_search = 1;
 
-    const {images, setImages} = useState([]);
+    // const {images, setImages} = useState([]);
     let searchText= "";
     //let nextPage= 1;
     //let hasMore= true;
@@ -25,11 +29,6 @@ function App() {
     // const inputRef = createRef();
 
     const { Content } = Layout;
-
-    // const getPhotoURL = (photo) => {
-    //     const { id, farm, secret, server } = photo;
-    //     return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
-    // }
 
     const stopLoading = () => {
         this.setState({ loading: false });
@@ -49,38 +48,8 @@ function App() {
         return images;
     }
 
-    // const fetchPhotos = (tag, action) => {
-    //     // tag = inputRef.current.value
-    //     console.log(tag)
 
-    //     const method = !tag ? 'flickr.photos.search' : 'flickr.photos.getRecent';
-
-    //     axios({
-    //         method: 'GET',
-    //         url: `https://www.flickr.com/services/rest/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}&tags=${tag}`
-    //     }).then(response => {
-    //         if (action) action();
-    //         if (response.data.photos && response.data.photos.photo) {
-    //             const images = ImagesList(response.data.photos.photo)
-    //             this.setImages(prevImages => {
-    //                 return {
-    //                     images: [...prevImages, images]
-    //                 }
-    //             })
-    //         }
-    //     }).catch(error => {
-    //         this.showMessage(error, 'Something went wrong, Please try again!');
-    //     });
-    // }
-
-    const fetchMorePhotos = () => {
-        const { search_text } = this.state;
-        if (search_text.length === 0) {
-            fetchPhotos()
-        } else {
-            fetchPhotos(search_text)
-        }
-    }
+    
 
     const debounceFn = (func, time) => {
         let timeout;
@@ -108,7 +77,7 @@ function App() {
 
     return (
         <Layout>
-            <HeaderX 
+            <SearchForm 
                 onClickSearchKey={handleSearch}
                 // search_keys={search_keys}
                 onSearch={handleSearch}
@@ -149,3 +118,61 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+// export class App extends Component {
+//   /*
+//   componentDidMount({ dispatch }) {
+//     dispatch(searchPhotos(window.store));
+//   }
+//   */
+
+//  const fetchPhotos = (tag, action) => {
+//     // tag = inputRef.current.value
+//     // console.log(tag)
+
+//     const method = !tag ? 'flickr.photos.search' : 'flickr.photos.getRecent';
+
+//     axios({
+//         method: 'GET',
+//         url: `https://www.flickr.com/services/rest/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}&tags=${tag}`
+//     }).then(response => {
+//         if (action) action();
+//         if (response.data.photos && response.data.photos.photo) {
+//             const images = ImagesList(response.data.photos.photo)
+//             this.setImages(prevImages => {
+//                 return {
+//                     images: [...prevImages, images]
+//                 }
+//             })
+//         }
+//     }).catch(error => {
+//         this.showMessage(error, 'Something went wrong, Please try again!');
+//     });
+// }
+
+
+//   render({ fetchError }) {
+//     return (
+//       <div className="App">
+//         <SearchForm onSubmit={this.handleSearch} />
+//         {!fetchError ? <Loader /> : <Error />}
+//       </div>
+//     );
+//   }
+// }
+
+// const mapStateToProps = state => (
+//   {
+//     fetchError: state.fetchError,
+//     form: state.form,
+//     Loader: state.Loader,
+//   }
+// );

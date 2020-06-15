@@ -1,4 +1,4 @@
-
+import axios from "axios";
 
 export const setPhotos = photos => ({
     type: 'SET_PHOTOS',
@@ -10,9 +10,13 @@ const getPhotoURL = (photo) => {
     return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
 }
 
-const fetchPhotos = (tag, action) => {
+export const searchPhotos = store => (dispatch) => {
+    fetchPhotos(dispatch, store);
+};
+
+export const fetchPhotos = (tag, action) => {
     // tag = inputRef.current.value
-    // console.log(tag)
+    console.log(tag)
 
     const method = !tag ? 'flickr.photos.search' : 'flickr.photos.getRecent';
 
@@ -34,6 +38,11 @@ const fetchPhotos = (tag, action) => {
     });
 }
 
-export const searchPhotos = store => (dispatch) => {
-    fetchPhotos(dispatch, store);
-  };
+const fetchMorePhotos = () => {
+    const { search_text } = this.state;
+    if (search_text.length === 0) {
+        fetchPhotos()
+    } else {
+        fetchPhotos(search_text)
+    }
+}
