@@ -2,14 +2,13 @@ import React, { createRef, useState } from "react";
 import axios from "axios";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-// import Photo from "./Photo";
 import '../styles/App.css';
 
 import SearchForm from './HeaderX';
 import FooterX from "./FooterX";
-import Loader from './Loader';
+// import Loader from './Loader';
 import Error from './Error';
-import { searchPhotos } from '../state/actions/searchPhotos';
+// import { searchPhotos } from '../state/actions/searchPhotos';
 
 import { Layout } from "antd";
 
@@ -34,6 +33,30 @@ function App() {
         this.setState({ loading: false });
     }
 
+    const fetchPhotos = (tag, action) => {
+        // tag = inputRef.current.value
+        console.log(tag)
+    
+        const method = !tag ? 'flickr.photos.search' : 'flickr.photos.getRecent';
+    
+        axios({
+            method: 'GET',
+            url: `https://www.flickr.com/services/rest/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}&tags=${tag}`
+        }).then(response => {
+            if (action) action();
+            if (response.data.photos && response.data.photos.photo) {
+                const images = ImagesList(response.data.photos.photo)
+                this.setImages(prevImages => {
+                    return {
+                        images: [...prevImages, images]
+                    }
+                })
+            }
+        }).catch(error => {
+            this.showMessage(error, 'Something went wrong, Please try again!');
+        });
+    }
+
     const ImagesList = photos => {
         const images= []
         for (let i = 0; i < photos.length; i++) {
@@ -48,8 +71,10 @@ function App() {
         return images;
     }
 
-
-    
+    const getPhotoURL = (photo) => {
+        const { id, farm, secret, server } = photo;
+        return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
+    }
 
     const debounceFn = (func, time) => {
         let timeout;

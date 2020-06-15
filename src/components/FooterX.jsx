@@ -1,16 +1,16 @@
-import React from "react";
-import "./footer.css";
-import { Layout } from "antd";
+// import React from "react";
+// import "./footer.css";
+// import { Layout } from "antd";
 
-function FooterX() {
+// function FooterX() {
 
-    const { Footer } = Layout;
+//     const { Footer } = Layout;
     
-    return (
-        <Footer>
-            Developed by PT &copy; 2020
-        </Footer>
-    )
-}
+//     return (
+//         <Footer>
+//             Developed by PT &copy; 2020
+//         </Footer>
+//     )
+// }
 
-export default FooterX;
+// export default FooterX;
