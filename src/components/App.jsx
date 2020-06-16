@@ -9,7 +9,7 @@ import ImageList from "./ImageList";
 // import FooterX from "./FooterX";
 // import Loader from './Loader';
 // import Error from './Error';
-// import { searchPhotos } from '../state/actions/searchPhotos';
+// import { searchPhotos } from '../data/redux/actions/searchPhotos';
 
 // import { Layout } from "antd";
 
