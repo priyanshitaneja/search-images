@@ -1,6 +1,6 @@
-export const searchPhotos (state = {}, action) => {
-    if(action.type ==='SET_PHOTOS')
+export const searchPhotos = (state = {}, action) => {
+    switch (action.type) {
+      case 'SET_PHOTOS':
         return action.photos;
     return state;
 };
-  
