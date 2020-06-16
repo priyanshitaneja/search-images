@@ -1,5 +1,11 @@
-// import React from 'react';
+import React, { Component } from 'react';
 // import Thumbnail from './Thumbnail';
+
+class ImageList extends Component {
+    render() {
+        return <div>imageList</div>
+    }
+}
 
 // const Images = ({ images, onThumbnailClick, selected }) => {
 //   const thumbnail = images.map((item, index) => (
@@ -15,4 +21,4 @@
 //   return thumbnail;
 // };
 
-// export default Images;
+export default ImageList;
