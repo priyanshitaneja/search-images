@@ -6,12 +6,16 @@ const per_page = 30;
 const format = 'json';
 const safe_search = 1;
 
-export const fetchPhotos = async () => {
+export const fetchPhotos = () => {
 
-    const response = await flickrApi.get(`/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}`);
+    return async (dispatch) => {
+        const response = await flickrApi.get(`/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}`);
 
-    return {
-        type: 'FETCH_PHOTOS',
-        payload: response
-    };
+        // return {
+        //     type: 'FETCH_PHOTOS',
+        //     payload: promise
+        // };
+
+        dispatch({ type: 'FETCH_PHOTOS', payload: response })
+    }
 };
