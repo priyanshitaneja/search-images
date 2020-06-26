@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { selectPhoto } from '../../data/redux/actions/selectPhoto';
 // import Thumbnail from './Thumbnail';
 
 class ImageList extends Component {
+
+    renderList() {
+        return (
+            <div>gvhbg</div>
+        )
+    }
+
     render() {
-        return <div>imageList</div>
+        return <div>{this.renderList()}</div>
     }
 }
 
-// const Images = ({ images, onThumbnailClick, selected }) => {
-//   const thumbnail = images.map((item, index) => (
-//     <Thumbnail
-//       key={`t_${item.id}`}
-//       url={item.url}
-//       title={item.title}
-//       index={index}
-//       onThumbnailClick={onThumbnailClick}
-//       selected={index === selected}
-//     />
-//   ));
-//   return thumbnail;
-// };
+const mapStateToProps = state => {
+    return {  };
+}
 
-export default ImageList;
+export default connect(mapStateToProps, { selectPhoto })(ImageList);

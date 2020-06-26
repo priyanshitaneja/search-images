@@ -1,5 +1,6 @@
-export const selectPhoto = photo => {
-    return {
-        type: "IMAGE_SELECTED"
-    }
-}
+// export const selectPhoto = photo => {
+//     return {
+//         type: "IMAGE_SELECTED",
+//         payload: photo
+//     }
+// }

@@ -1,8 +1,9 @@
-import React, { createRef, useState } from "react";
-import axios from "axios";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React from "react";
+// import ReactDOM from "react-dom";
+// import axios from "axios";
+// import InfiniteScroll from 'react-infinite-scroll-component';
 
-import '../styles/App.css';
+// import '../styles/App.css';
 import ImageList from "./ImageList";
 
 // import SearchForm from './HeaderX';
@@ -13,7 +14,7 @@ import ImageList from "./ImageList";
 
 // import { Layout } from "antd";
 
-const App = () => {
+function App() {
     return (
         <div> 
             <ImageList />
@@ -21,7 +22,7 @@ const App = () => {
     );
 };
 
-export default App();
+export default App;
 
 // function App() {
 
