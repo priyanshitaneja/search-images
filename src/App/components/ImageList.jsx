@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectPhoto } from '../../data/redux/actions/selectPhoto';
+import { fetchPhotos } from '../../data/redux/actions';
 // import Thumbnail from './Thumbnail';
 
 class ImageList extends Component {
 
-    renderList() {
-        return (
-            <div>gvhbg</div>
-        )
+    componentDidMount() {
+        this.props.fetchPhotos();
     }
 
     render() {
-        return <div>{this.renderList()}</div>
+        return <div>gvhbg</div>
     }
 }
 
-const mapStateToProps = state => {
-    return {  };
-}
-
-export default connect(mapStateToProps, { selectPhoto })(ImageList);
+export default connect(null, { fetchPhotos })(ImageList);
