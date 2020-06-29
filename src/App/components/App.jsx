@@ -12,15 +12,15 @@ import FooterX from "./FooterX";
 // import Error from './Error';
 // import { searchPhotos } from '../data/redux/actions/searchPhotos';
 
-// import { Layout } from "antd";
+import { Layout } from "antd";
 
 function App() {
     return (
-        <div> 
-            <HeaderX />
+        <Layout> 
+            {/* <HeaderX /> */}
             <ImageList />
             <FooterX />
-        </div>
+        </Layout>
     );
 };
 
