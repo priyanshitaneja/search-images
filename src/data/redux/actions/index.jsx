@@ -96,9 +96,9 @@ export const fetchPhotos = () => {
             .then(({ data }) => {
                 dispatch(fetchPhotosSuccess(data.photos.photo));
             })
-            .catch(err => {
-                dispatch(fetchPhotosFail(err));
-            })
+            // .catch(err => {
+            //     dispatch(fetchPhotosFail(err));
+            // })
     };
 }
 
@@ -109,9 +109,9 @@ export const fetchMorePhotos = () => {
             .then(({ data }) => {
                 dispatch(fetchMorePhotosSuccess(data.photos.photo));
             })
-            .catch(err => {
-                dispatch(fetchMorePhotosFail(err));
-            })
+            // .catch(err => {
+            //     dispatch(fetchMorePhotosFail(err));
+            // })
     };
 }
 
@@ -132,9 +132,9 @@ export const searchPhotos = (text) => {
             .then(({ data }) => {
                 dispatch(searchPhotosSuccess(data.photos.photo));
             })
-            .catch(error => {
-                dispatch(searchPhotosFail(error));
-            })
+            // .catch(error => {
+            //     dispatch(searchPhotosFail(error));
+            // })
 
     }
 }
