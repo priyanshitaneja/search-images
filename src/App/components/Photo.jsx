@@ -16,10 +16,6 @@ class Photo extends React.PureComponent {
         this.onClickHandler = this.onClickHandler.bind(this)
     }
 
-    onClickHandler = (event) => {
-        document.getElementById('galleryImage').attr("src", event.target.src);
-    }
-
     render() {
         return (
             <div className="">
@@ -29,7 +25,8 @@ class Photo extends React.PureComponent {
                     className=""
                     src={this.props.source}
                     alt="Error, Please try again!"
-                    onClick={(event) => this.onClickHandler(event)} />
+                // onClick={(event) => this.onClickHandler(event)} 
+                />
             </div>
         );
     }

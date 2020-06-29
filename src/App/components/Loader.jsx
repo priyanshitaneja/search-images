@@ -1,3 +1,12 @@
+import React from 'react';
+import "../../styles/loader.css";
+
+const loader = () => (
+    <div className="loader"></div>
+);
+
+export default loader;
+
 // // import React from 'react';
 // // import PropTypes from 'prop-types';
 // // import { Row, Col } from 'antd';

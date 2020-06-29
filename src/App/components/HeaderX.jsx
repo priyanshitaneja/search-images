@@ -1,15 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux';
 import * as actions from "../../data/redux/actions";
-import "../../styles/header.css";
-// import "./../styles/header.css"
-
 import { Layout, Form, Input, Typography, SearchOutlined } from "antd";
-// import { reduxForm } from 'redux-form';
+import "../../styles/header.css";
 
 const { Title } = Typography;
 const { Header } = Layout;
-
 
 class HeaderX extends React.Component {
     constructor(props) {
@@ -41,7 +37,7 @@ class HeaderX extends React.Component {
 
     handleClick = (event) => {
         this.props.onSearchPhotos(event.target.value);
-        document.getElementById('my-input-box').val(event.target.value)
+        document.getElementById('input').val(event.target.value)
     }
 
     handleKeypress = (event) => {
@@ -52,7 +48,7 @@ class HeaderX extends React.Component {
     }
 
     searchPhotos = (event) => {
-        this.storeSuggestions(document.getElementById('my-input-box').val());
+        this.storeSuggestions(document.getElementById('input').val());
         document.getElementsByClassName('options').hide()
     }
 
@@ -71,6 +67,8 @@ class HeaderX extends React.Component {
                 <Title level={1} id="title">Search Images</Title>
                 <Form>
                     <Input
+                        name="search"
+                        component="input"
                         id="input"
                         ref={this.inputRef}
                         className=""
@@ -79,7 +77,7 @@ class HeaderX extends React.Component {
                         type="text"
                         placeholder="Search here"
                     />
-                    <SearchOutlined 
+                    <SearchOutlined
                         onClick={(event) => this.searchPhotos(event)}
                     />
                     {/* <div className="">

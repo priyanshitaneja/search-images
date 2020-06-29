@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from "../../data/redux/actions";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Photo from "./Photo";
+import Loader from "./Loader";
 
 class ImageList extends React.PureComponent {
 
@@ -19,7 +20,7 @@ class ImageList extends React.PureComponent {
                     dataLength={this.props.photos ? this.props.photos.length : 0}
                     next={this.props.handleFetchMorePhotos}
                     hasMore={true}
-                    loader={<h4>Loading...</h4>}
+                    loader={ <Loader /> }
                     className=""
                     // style={{ marginTop: "8rem" }}
                     endMessage={
