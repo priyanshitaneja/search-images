@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from "../../data/redux/actions";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import * as actions from "../../data/redux/actions";
 import Photo from "./Photo";
 import Loader from "./Loader";
+import "../../styles/imageList.css";
 
 class ImageList extends React.PureComponent {
 
