@@ -1,6 +1,5 @@
 import * as actionTypes from "../../config/utils/constants";
 import flickrApi from "../../../apis/flickr";
-import axios from 'axios';
 
 // const method = 'flickr.photos.getRecent';
 
@@ -92,7 +91,7 @@ export const searchPhotosFail = (error) => {
 export const fetchPhotos = () => {
     return dispatch => {
         dispatch(fetchPhotosStart());
-        axios.get('https://api.flickr.com/services/rest/', { params })
+        flickrApi.get({ params })
             .then(({ data }) => {
                 dispatch(fetchPhotosSuccess(data.photos.photo));
             })
@@ -105,7 +104,7 @@ export const fetchPhotos = () => {
 export const fetchMorePhotos = () => {
     return dispatch => {
         dispatch(fetchMorePhotosStart());
-        axios.get('https://api.flickr.com/services/rest/', { params })
+        flickrApi.get({ params })
             .then(({ data }) => {
                 dispatch(fetchMorePhotosSuccess(data.photos.photo));
             })
@@ -128,7 +127,7 @@ export const searchPhotos = (text) => {
             safe_search: 1
         }
 
-        axios.get('https://api.flickr.com/services/rest/', { params })
+        flickrApi.get({ params })
             .then(({ data }) => {
                 dispatch(searchPhotosSuccess(data.photos.photo));
             })
