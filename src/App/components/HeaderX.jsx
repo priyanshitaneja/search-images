@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import * as actions from "../../data/redux/actions";
+import "../../styles/header.css";
 // import "./../styles/header.css"
 
 import { Layout, Form, Input, Typography, SearchOutlined } from "antd";
@@ -29,75 +30,67 @@ class HeaderX extends React.Component {
         }
     }
 
-    handleChange = (e) => {
-        if (e.target.value.length === 0) {
+    handleChange = (event) => {
+        if (event.target.value.length === 0) {
             this.props.onFetchPhotos();
         }
         else {
-            this.props.onSearchPhotos(e.target.value);
+            this.props.onSearchPhotos(event.target.value);
         }
     }
 
-    handleClick = (e) => {
-        this.props.onSearchPhotos(e.target.value);
-        document.getElementById('my-input-box').val(e.target.value)
+    handleClick = (event) => {
+        this.props.onSearchPhotos(event.target.value);
+        document.getElementById('my-input-box').val(event.target.value)
     }
 
-    searchPhotos = (e) => {
-        this.storeSuggestions(document.getElementById('my-input-box').val());
-        document.getElementsByClassName('options').hide()
-    }
-
-    keyPress = (e) => {
-        if (e.keyCode === 13) {
-            this.storeSuggestions(e.target.value)
+    handleKeypress = (event) => {
+        if (event.keyCode === 13) {
+            this.storeSuggestions(event.target.value)
             document.getElementsByClassName('options').hide()
         }
     }
 
-    storeSuggestions = (value) => {
-        let newList = [...this.state.list, value]
-        this.setState({
-            list: newList
-        })
-
-        localStorage.setItem('list', JSON.stringify(newList))
+    searchPhotos = (event) => {
+        this.storeSuggestions(document.getElementById('my-input-box').val());
+        document.getElementsByClassName('options').hide()
     }
+
+    // storeSuggestions = (value) => {
+    //     let newList = [...this.state.list, value]
+    //     this.setState({
+    //         list: newList
+    //     })
+
+    //     localStorage.setItem('list', JSON.stringify(newList))
+    // }
 
     render() {
         return (
-            <Header className="">
-                <Title level={1}>Search Images</Title>
-                <Form className="">
-                    <div className="">
-                        <Input
-                            id=""
-                            ref={this.inputRef}
-                            className=""
-                            onChange={(e) => this.handleChange(e)}
-                            onKeyDown={(e) => this.keyPress(e)}
-                            type="text"
-                            placeholder="Search here"
-                        />
-                        <SearchOutlined
-                            style={{
-                                right: "10px",
-                                top: "6px",
-                                color: '#24827d',
-                                cursor: "pointer"
-                            }}
-                            onClick={(e) => this.searchPhotos(e)}
-                        />
-                        <div className="">
+            <Header id="header">
+                <Title level={1} id="title">Search Images</Title>
+                <Form>
+                    <Input
+                        id="input"
+                        ref={this.inputRef}
+                        className=""
+                        onChange={(event) => this.handleChange(event)}
+                        onKeyDown={(event) => this.handleKeypress(event)}
+                        type="text"
+                        placeholder="Search here"
+                    />
+                    <SearchOutlined 
+                        onClick={(event) => this.searchPhotos(event)}
+                    />
+                    {/* <div className="">
                             {
                                 JSON.parse(localStorage.getItem('list')) ?
                                     JSON.parse(localStorage.getItem('list')).reverse().map((option, index) => (
-                                        <option className="" onClick={(e) => this.handleClick(e)} key={index} value={option}>{option}</option>
+                                        <option className="" onClick={(event) => this.handleClick(event)} key={index} value={option}>{option}</option>
                                     )) : null
                             }
                             <button type="button" className="" onClick={() => this.clearList()}>Clear All</button>
-                        </div>
-                    </div>
+                        </div> */}
                 </Form>
             </Header>
         )

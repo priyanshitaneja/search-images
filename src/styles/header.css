@@ -2,9 +2,10 @@ Header {
     background-color: teal;
     color: white;
     text-align: center;
+    height: 150px;
 }
 
-h1 {
+Title {
     margin: 0;
     padding: 15px 0 5px 0;
     letter-spacing: 1px;
