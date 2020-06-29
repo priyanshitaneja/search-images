@@ -1,17 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPhotos } from '../../data/redux/actions';
-// import Thumbnail from './Thumbnail';
+import * as actionTypes from "../../data/config/utils/constants";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-class ImageList extends Component {
+class ImageList extends React.PureComponent {
 
-    componentDidMount() {
-        this.props.fetchPhotos();
+    constructor(props) {
+        super(props);
+        this.listRef = React.createRef();
     }
 
     render() {
-        return <div>gvhbg</div>
+        // $('.infinite-scroll-component__outerdiv').css("width", "100%");
+        return (
+            <div id="image-container" ref={this.listRef} className="row">
+                <InfiniteScroll
+                    dataLength={this.props.photos ? this.props.photos.length : 0}
+                    next={this.props.handleFetchMorePhotos}
+                    hasMore={true}
+                    loader={<Loader />}
+                    className=""
+                    style={{ marginTop: "8rem" }}
+                >
+
+                    {
+                        this.props.photos ?
+                            (this.props.photos.map((photo, i) => (
+                                <Photo
+                                    key={i}
+                                    source={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`}
+                                />
+                            ))
+                            ) : null
+                    }
+
+                </InfiniteScroll>
+            </div>
+        )
     }
-}
+};
+
+const mapStateToProps = state => {
+    return {
+        photos: state.photos,
+        loading: state.loading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        handleFetchPhotos: () => dispatch(actions.fetchPhotos()),
+        handleFetchMorePhotos: () => dispatch(actions.fetchMorePhotos())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
 
 export default connect(null, { fetchPhotos })(ImageList);
