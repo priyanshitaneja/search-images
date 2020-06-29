@@ -38,24 +38,10 @@ class HeaderX extends React.Component {
         }
     }
 
-
     handleClick = (e) => {
         this.props.onSearchPhotos(e.target.value);
         document.getElementById('my-input-box').val(e.target.value)
     }
-
-    // //Suggestion box search
-    // clearList = () => {
-    //     localStorage.removeItem('list');
-    //     this.setState({ list: [] })
-    //     $('.options').hide()
-    // }
-
-    // showSuggestions = () => {
-    //     if (this.state.list.length > 0) {
-    //         $('.options').show()
-    //     }
-    // }
 
     searchPhotos = (e) => {
         this.storeSuggestions(document.getElementById('my-input-box').val());
@@ -80,10 +66,8 @@ class HeaderX extends React.Component {
 
     render() {
         return (
-
             <Header className="">
                 <Title level={1}>Search Images</Title>
-
                 <Form className="">
                     <div className="">
                         <Input
@@ -91,19 +75,18 @@ class HeaderX extends React.Component {
                             ref={this.inputRef}
                             className=""
                             onChange={(e) => this.handleChange(e)}
-                            // onSelect={() => this.showSuggestions()}
                             onKeyDown={(e) => this.keyPress(e)}
                             type="text"
                             placeholder="Search here"
                         />
-                        <SearchOutlined 
+                        <SearchOutlined
                             style={{
-                            right: "10px",
-                            top: "6px",
-                            color: '#24827d',
-                            cursor: "pointer"
-                        }}
-                        onClick={(e) => this.searchPhotos(e)}
+                                right: "10px",
+                                top: "6px",
+                                color: '#24827d',
+                                cursor: "pointer"
+                            }}
+                            onClick={(e) => this.searchPhotos(e)}
                         />
                         <div className="">
                             {
