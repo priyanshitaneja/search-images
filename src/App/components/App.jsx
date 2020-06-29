@@ -8,6 +8,7 @@ import ImageList from "./ImageList";
 
 // import SearchForm from './HeaderX';
 import FooterX from "./FooterX";
+import HeaderX from "./HeaderX";
 // import Loader from './Loader';
 // import Error from './Error';
 // import { searchPhotos } from '../data/redux/actions/searchPhotos';
@@ -17,7 +18,7 @@ import { Layout } from "antd";
 function App() {
     return (
         <Layout> 
-            {/* <HeaderX /> */}
+            <HeaderX />
             <ImageList />
             <FooterX />
         </Layout>

@@ -1,13 +1,15 @@
 import React from "react";
 import { connect } from 'react-redux';
 import * as actions from "../../data/redux/actions";
-import { Layout, Form, Input, Typography, SearchOutlined } from "antd";
+import { Layout, Form, Input, Typography } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 import "../../styles/header.css";
+import "../../styles/common.css";
 
 const { Title } = Typography;
 const { Header } = Layout;
 
-class HeaderX extends React.Component {
+class HeaderX extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,12 +42,12 @@ class HeaderX extends React.Component {
         document.getElementById('input').val(event.target.value)
     }
 
-    handleKeypress = (event) => {
-        if (event.keyCode === 13) {
-            this.storeSuggestions(event.target.value)
-            document.getElementsByClassName('options').hide()
-        }
-    }
+    // handleKeypress = (event) => {
+    //     if (event.keyCode === 13) {
+    //         this.storeSuggestions(event.target.value)
+    //         document.getElementsByClassName('options').hide()
+    //     }
+    // }
 
     searchPhotos = (event) => {
         this.storeSuggestions(document.getElementById('input').val());
@@ -77,18 +79,9 @@ class HeaderX extends React.Component {
                         type="text"
                         placeholder="Search here"
                     />
-                    <SearchOutlined
+                    <SearchOutlined id="SearchOutlined"
                         onClick={(event) => this.searchPhotos(event)}
                     />
-                    {/* <div className="">
-                            {
-                                JSON.parse(localStorage.getItem('list')) ?
-                                    JSON.parse(localStorage.getItem('list')).reverse().map((option, index) => (
-                                        <option className="" onClick={(event) => this.handleClick(event)} key={index} value={option}>{option}</option>
-                                    )) : null
-                            }
-                            <button type="button" className="" onClick={() => this.clearList()}>Clear All</button>
-                        </div> */}
                 </Form>
             </Header>
         )
