@@ -6,8 +6,8 @@ import React from "react";
 // import '../styles/App.css';
 import ImageList from "./ImageList";
 
-// import SearchForm from './HeaderX';
-// import FooterX from "./FooterX";
+import SearchForm from './HeaderX';
+import FooterX from "./FooterX";
 // import Loader from './Loader';
 // import Error from './Error';
 // import { searchPhotos } from '../data/redux/actions/searchPhotos';
@@ -17,7 +17,9 @@ import ImageList from "./ImageList";
 function App() {
     return (
         <div> 
+            <HeaderX />
             <ImageList />
+            <FooterX />
         </div>
     );
 };
