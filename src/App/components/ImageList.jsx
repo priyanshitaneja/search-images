@@ -56,4 +56,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
 
-export default connect(null, { fetchPhotos })(ImageList);
