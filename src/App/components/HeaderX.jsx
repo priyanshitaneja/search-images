@@ -29,8 +29,8 @@ class HeaderX extends React.PureComponent {
         return function () {
             const functionCall = () => func.apply(this, arguments);
             clearTimeout(timeout);
-            timeout = setTimeout(functionCall, time);
-        }  
+            timeout = setTimeout(functionCall, 300);
+        } 
     }
 
     handleChange = (event) => {
