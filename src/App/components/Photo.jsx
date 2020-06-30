@@ -13,20 +13,41 @@ import React from 'react';
 class Photo extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.onClickHandler = this.onClickHandler.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick = (event) => {
+        document.getElementById('galleryImage').attr("src", event.target.src);
     }
 
     render() {
         return (
-            <div className="">
+            <div className="" style={{ width: "30%" }}>
                 <img
-                    data-target="#myModal"
+                    data-target="#thumbnail"
                     data-toggle="modal"
                     className=""
                     src={this.props.source}
                     alt="Error, Please try again!"
-                // onClick={(event) => this.onClickHandler(event)} 
+                    onClick={(event) => this.handleClick(event)}
                 />
+                <div
+                    className=""
+                    id="thumbnail"
+                    tabIndex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                >
+                    <div className="">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="">
+                        <img className='gallery-thumbnail' id="thumbnailImage" alt="Not available" />
+                    </div>
+                </div>
             </div>
         );
     }

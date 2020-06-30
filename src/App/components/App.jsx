@@ -1,17 +1,8 @@
 import React from "react";
-// import ReactDOM from "react-dom";
-// import axios from "axios";
-// import InfiniteScroll from 'react-infinite-scroll-component';
 
-// import '../styles/App.css';
 import ImageList from "./ImageList";
-
-// import SearchForm from './HeaderX';
 import FooterX from "./FooterX";
 import HeaderX from "./HeaderX";
-// import Loader from './Loader';
-// import Error from './Error';
-// import { searchPhotos } from '../data/redux/actions/searchPhotos';
 
 import { Layout } from "antd";
 

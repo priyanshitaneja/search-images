@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
-import * as actions from "../../data/redux/actions";
+
 import { Layout, Form, Input, Typography } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+
+import * as actions from "../../data/redux/actions";
 import "../../styles/header.css";
 import "../../styles/common.css";
 
@@ -20,11 +22,25 @@ class HeaderX extends React.PureComponent {
 
     componentDidMount() {
         let list = [];
-        if (JSON.parse(localStorage.getItem('list'))) {
-            list = JSON.parse(localStorage.getItem('list'));
-        }
+        // if (JSON.parse(localStorage.getItem('list'))) {
+        //     list = JSON.parse(localStorage.getItem('list'));
+        // }
         if (list.length > 0) {
             this.setState({ list: list })
+        }
+    }
+
+    handleClick = (event) => {
+        // document.getElementById('input').val(event.target.value);
+        this.props.onSearchPhotos(event.target.value);
+    }
+
+    debounceFn = (func, time) => {
+        let timeout;
+        return function () {
+            const functionCall = () => func.apply(this, arguments);
+            clearTimeout(timeout);
+            timeout = setTimeout(functionCall, time);
         }
     }
 
@@ -33,25 +49,9 @@ class HeaderX extends React.PureComponent {
             this.props.onFetchPhotos();
         }
         else {
-            this.props.onSearchPhotos(event.target.value);
+            this.props.debounceFn(this.handleClick, 300);
+            // this.props.onSearchPhotos(event.target.value);
         }
-    }
-
-    handleClick = (event) => {
-        this.props.onSearchPhotos(event.target.value);
-        document.getElementById('input').val(event.target.value)
-    }
-
-    // handleKeypress = (event) => {
-    //     if (event.keyCode === 13) {
-    //         this.storeSuggestions(event.target.value)
-    //         document.getElementsByClassName('options').hide()
-    //     }
-    // }
-
-    searchPhotos = (event) => {
-        this.storeSuggestions(document.getElementById('input').val());
-        document.getElementsByClassName('options').hide()
     }
 
     // storeSuggestions = (value) => {
@@ -62,6 +62,19 @@ class HeaderX extends React.PureComponent {
 
     //     localStorage.setItem('list', JSON.stringify(newList))
     // }
+
+
+    handleKeypress = (event) => {
+        if (event.keyCode === 13) {
+            this.handleClick(event.target.value)
+        }
+    }
+
+    // searchPhotos = (event) => {
+    //     // this.storeSuggestions(document.getElementById('input').val());
+    //     // document.getElementsByClassName('options').hide();
+    // }
+
 
     render() {
         return (
@@ -75,7 +88,7 @@ class HeaderX extends React.PureComponent {
                         ref={this.inputRef}
                         className=""
                         onChange={(event) => this.handleChange(event)}
-                        onKeyDown={(event) => this.handleKeypress(event)}
+                        onKeyPress={(event) => this.handleKeypress(event)}
                         type="text"
                         placeholder="Search here"
                     />

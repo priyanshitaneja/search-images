@@ -14,7 +14,6 @@ class ImageList extends React.PureComponent {
     }
 
     render() {
-        // $('.infinite-scroll-component__outerdiv').css("width", "100%");
         return (
             <div id="image-container" ref={this.listRef} className="row">
                 <InfiniteScroll
@@ -23,7 +22,6 @@ class ImageList extends React.PureComponent {
                     hasMore={true}
                     loader={ <Loader /> }
                     className=""
-                    // style={{ marginTop: "8rem" }}
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
                             <b>That's all we have for this search!</b>
@@ -33,10 +31,10 @@ class ImageList extends React.PureComponent {
 
                     {
                         this.props.photos ?
-                            (this.props.photos.map((photo, i) => (
+                            (this.props.photos.map(({ id, farm, secret, server }, i) => (
                                 <Photo
                                     key={i}
-                                    source={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`}
+                                    src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
                                 />
                             ))
                             ) : null

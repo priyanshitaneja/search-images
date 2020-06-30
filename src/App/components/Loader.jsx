@@ -2,7 +2,7 @@ import React from 'react';
 import "../../styles/loader.css";
 
 const loader = () => (
-    <div className="loader"></div>
+    <div className="loader">Loading</div>
 );
 
 export default loader;
