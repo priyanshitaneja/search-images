@@ -65,7 +65,7 @@ class HeaderX extends React.PureComponent {
                         placeholder="Search here"
                     />
                     <SearchOutlined id="SearchOutlined"
-                        onClick={(event) => this.props.onSearchPhotos(event)}
+                        onClick={(event) => this.handleSearch(event)}
                     />
                 </Form>
             </Header>
