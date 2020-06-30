@@ -106,7 +106,7 @@ export const searchPhotos = (text) => {
             format: 'json',
             method: `flickr.photos.search`,
             nojsoncallback: 1,
-            per_page: 10,
+            per_page: 100,
             tags: `${text}`,
             safe_search: 1
         }

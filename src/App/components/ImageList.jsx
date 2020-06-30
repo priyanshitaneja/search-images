@@ -11,11 +11,17 @@ class ImageList extends React.PureComponent {
     constructor(props) {
         super(props);
         this.listRef = React.createRef();
+        // this.imageRef = React.createRef();
     }
 
     componentDidMount() {
         this.props.fetchPhotos();
+        // this.imageRef.current.addEventListener('load', this.setSpans);
     }
+
+    // setSpans = () => {
+    //     console.log(this.imageRef.current.clientHeight);
+    // }
 
     render() {
         console.log("Photos", this.props.photos)
@@ -40,6 +46,7 @@ class ImageList extends React.PureComponent {
                             this.props.photos ?
                                 (this.props.photos.map(({ id, farm, secret, server }, i) => (
                                     <Photo
+                                        ref={this.imageRef}
                                         key={i}
                                         source={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`}
                                     />

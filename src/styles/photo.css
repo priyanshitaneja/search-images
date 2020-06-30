@@ -1,7 +1,7 @@
 
 .image{
     width: 250px;
-    
+    grid-row-end: span 1;
 }
 
 

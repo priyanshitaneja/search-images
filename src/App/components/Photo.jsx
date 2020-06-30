@@ -14,7 +14,7 @@ import "../../styles/photo.css";
 class Photo extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);   
     }
 
     handleClick = (event) => {
@@ -27,8 +27,8 @@ class Photo extends React.PureComponent {
                 <img
                     // data-target="#thumbnail"
                     // data-toggle="modal"
-                    className="image"
-                    src={this.props.source}
+                    className="image" 
+                    src={this.props.source} 
                     alt="Error, Please try again!"
                     onClick={(event) => this.handleClick(event)}
                 />
