@@ -25,7 +25,6 @@ class HeaderX extends React.PureComponent {
         if (list.length > 0) {
             this.setState({ list: list })
         }
-         //this actually doesnt do anything meaningful
     }
 
     handleClick = (event) => {

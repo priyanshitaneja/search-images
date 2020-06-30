@@ -14,7 +14,7 @@ const params = {
 }
 
 export const fetchPhotosStart = () => {
-    return { // this action will be sent
+    return {
         type: actionTypes.FETCH_PHOTOS_START
     };
 };
@@ -73,30 +73,14 @@ export const searchPhotosFail = (error) => {
     }
 }
 
-
-
-// export const fetchPhotos = () => {
-
-//     return async (dispatch) => {
-//         const response = await flickrApi.get(`/?method=${method}&api_key=${api_key}&safe_search=${safe_search}&per_page=${per_page}&format=${format}`);
-
-//         // return {
-//         //     type: 'FETCH_PHOTOS',
-//         //     payload: promise
-//         // };
-
-//         dispatch({ type: 'FETCH_PHOTOS', payload: response })
-//     }
-// };
-
-export const fetchPhotos = () => {   //This is the main one to fetch photos
+export const fetchPhotos = () => { 
     return dispatch => {
-        dispatch(fetchPhotosStart()); //The one you called is called inside this anyway, we don't even need to export upar vaale functions, Idk if I did or not but you dont have to
-        axios.get('https://www.flickr.com/services/rest', { params })
-            .then(({ data }) => { //If this is called, it means we have the photos
+        dispatch(fetchPhotosStart()); 
+            axios.get('https://www.flickr.com/services/rest', { params })
+            .then(({ data }) => {
                 dispatch(fetchPhotosSuccess(data.photos.photo));
             })
-            .catch(err => { //Error case
+            .catch(err => {
                 dispatch(fetchPhotosFail(err));
             })
     };

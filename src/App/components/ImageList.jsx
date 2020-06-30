@@ -39,7 +39,7 @@ class ImageList extends React.PureComponent {
                             (this.props.photos.map(({ id, farm, secret, server }, i) => (
                                 <Photo
                                     key={i}
-                                    src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
+                                    source={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`}
                                 />
                             ))
                             ) : null
