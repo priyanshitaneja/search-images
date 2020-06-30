@@ -1,8 +1,8 @@
 #image-container {
     padding: 25px !important;
     /* position: absolute; */
-    /* overflow-x: hidden; */
-    /* overflow-y: auto; */
+    overflow-x: hidden;
+    overflow-y: auto;
     height: 80%;
     width: 95%;
     margin: 0 auto;

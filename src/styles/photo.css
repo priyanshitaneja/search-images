@@ -4,14 +4,16 @@
     grid-row-end: span 1;
 }
 
+.hidden {
+    display: none;
+}
 
-
-/* .imageCard {
+.imageCard {
     padding: 7px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     background-color: #5891b3;
     border-radius: 5px;
-} */
+}
 
 
 /* .loading Img {
