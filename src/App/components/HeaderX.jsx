@@ -22,16 +22,12 @@ class HeaderX extends React.PureComponent {
 
     componentDidMount() {
         let list = [];
-        // if (JSON.parse(localStorage.getItem('list'))) {
-        //     list = JSON.parse(localStorage.getItem('list'));
-        // }
         if (list.length > 0) {
             this.setState({ list: list })
         }
     }
 
     handleClick = (event) => {
-        // document.getElementById('input').val(event.target.value);
         this.props.onSearchPhotos(event.target.value);
     }
 
@@ -49,32 +45,15 @@ class HeaderX extends React.PureComponent {
             this.props.onFetchPhotos();
         }
         else {
-            this.props.debounceFn(this.handleClick, 300);
-            // this.props.onSearchPhotos(event.target.value);
+            this.debounceFn(this.handleClick, 300);
         }
     }
-
-    // storeSuggestions = (value) => {
-    //     let newList = [...this.state.list, value]
-    //     this.setState({
-    //         list: newList
-    //     })
-
-    //     localStorage.setItem('list', JSON.stringify(newList))
-    // }
-
 
     handleKeypress = (event) => {
         if (event.keyCode === 13) {
             this.handleClick(event.target.value)
         }
     }
-
-    // searchPhotos = (event) => {
-    //     // this.storeSuggestions(document.getElementById('input').val());
-    //     // document.getElementsByClassName('options').hide();
-    // }
-
 
     render() {
         return (

@@ -14,6 +14,7 @@ class ImageList extends React.PureComponent {
     }
 
     render() {
+        console.log("Photos", this.props.photos)
         return (
             <div id="image-container" ref={this.listRef} className="row">
                 <InfiniteScroll
