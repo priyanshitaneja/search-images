@@ -13,6 +13,10 @@ class ImageList extends React.PureComponent {
         this.listRef = React.createRef();
     }
 
+    componentDidMount() {
+        this.props.fetchPhotos();
+    }
+
     render() {
         console.log("Photos", this.props.photos)
         return (
@@ -56,7 +60,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleFetchPhotos: () => dispatch(actions.fetchPhotos()),
+        fetchPhotos: () => dispatch(actions.fetchPhotos()), // The name you mention here is available to you as a prop, accessible with this.props
         handleFetchMorePhotos: () => dispatch(actions.fetchMorePhotos())
     };
 };

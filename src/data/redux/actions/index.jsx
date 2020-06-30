@@ -1,5 +1,6 @@
 import * as actionTypes from "../../config/utils/constants";
 import flickrApi from "../../../apis/flickr";
+import axios from "axios";
 
 // const method = 'flickr.photos.getRecent';
 
@@ -13,7 +14,7 @@ const params = {
 }
 
 export const fetchPhotosStart = () => {
-    return {
+    return { // this action will be sent
         type: actionTypes.FETCH_PHOTOS_START
     };
 };
@@ -88,14 +89,14 @@ export const searchPhotosFail = (error) => {
 //     }
 // };
 
-export const fetchPhotos = () => {
+export const fetchPhotos = () => {   //This is the main one to fetch photos
     return dispatch => {
-        dispatch(fetchPhotosStart());
-        flickrApi.get({ params })
-            .then(({ data }) => {
+        dispatch(fetchPhotosStart()); //The one you called is called inside this anyway, we don't even need to export upar vaale functions, Idk if I did or not but you dont have to
+        axios.get('https://www.flickr.com/services/rest', { params })
+            .then(({ data }) => { //If this is called, it means we have the photos
                 dispatch(fetchPhotosSuccess(data.photos.photo));
             })
-            .catch(err => {
+            .catch(err => { //Error case
                 dispatch(fetchPhotosFail(err));
             })
     };
@@ -104,7 +105,7 @@ export const fetchPhotos = () => {
 export const fetchMorePhotos = () => {
     return dispatch => {
         dispatch(fetchMorePhotosStart());
-        flickrApi.get({ params })
+        axios.get('https://www.flickr.com/services/rest', { params })
             .then(({ data }) => {
                 dispatch(fetchMorePhotosSuccess(data.photos.photo));
             })

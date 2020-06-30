@@ -23,18 +23,18 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PHOTOS_START:
       return {
-        ...state,
+        ...state,   //bas loading true ho jaayegi, no use
         loading: true
       }
 
     case actionTypes.FETCH_PHOTOS_SUCCESS:
-      return {
+      return { //So, here we do whatever we want with those photos
         ...state,
         photos: action.photos,
         loading: false
       }
     case actionTypes.FETCH_PHOTOS_FAIL:
-      return {
+      return { //here
         ...state,
         loading: false,
         error: action.error

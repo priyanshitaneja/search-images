@@ -25,6 +25,7 @@ class HeaderX extends React.PureComponent {
         if (list.length > 0) {
             this.setState({ list: list })
         }
+         //this actually doesnt do anything meaningful
     }
 
     handleClick = (event) => {
@@ -94,32 +95,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderX);
-
-// function SearchForm({ search_text, onSearch, onChange }) {
-
-//     const { Title } = Typography;
-//     const { Header } = Layout;
-
-//     return (
-//         <Header>
-//             <Title level={1}>Search Images</Title>
-//             <Form>
-//                 <Input
-//                     name="search"
-//                     id="search"
-//                     component="input"
-//                     type="text"
-//                     placeholder="Search here"
-//                     value={search_text}
-//                     onSearch={onSearch}
-//                     onChange={onChange}
-//                 />
-//             </Form>
-//         </Header>
-//     )
-
-// }
-
-// export default reduxForm({
-//     form: 'searchForm', // a unique identifier for this form
-// })(SearchForm);
