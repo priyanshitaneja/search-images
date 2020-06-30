@@ -9,7 +9,7 @@ const params = {
     format: 'json',
     method: `flickr.photos.getRecent`,
     nojsoncallback: 1,
-    per_page: 100,
+    per_page: 30,
     safe_search: 1
 }
 
@@ -112,7 +112,7 @@ export const searchPhotos = (text) => {
             safe_search: 1
         }
 
-        flickrApi.get({ params })
+        axios.get('https://www.flickr.com/services/rest', { params })
             .then(({ data }) => {
                 dispatch(searchPhotosSuccess(data.photos.photo));
             })

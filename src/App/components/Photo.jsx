@@ -26,12 +26,12 @@ class Photo extends React.PureComponent {
                 <img
                     data-target="#thumbnail"
                     data-toggle="modal"
-                    className=""
+                    className="image"
                     src={this.props.source}
                     alt="Error, Please try again!"
                     onClick={(event) => this.handleClick(event)}
                 />
-                <div
+                {/* <div
                     className=""
                     id="thumbnail"
                     tabIndex="-1"
@@ -47,7 +47,7 @@ class Photo extends React.PureComponent {
                     <div className="">
                         <img className='gallery-thumbnail' id="thumbnailImage" alt="Not available" />
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }

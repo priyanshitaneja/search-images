@@ -20,14 +20,7 @@ class HeaderX extends React.PureComponent {
         this.inputRef = React.createRef();
     }
 
-    componentDidMount() {
-        let list = [];
-        if (list.length > 0) {
-            this.setState({ list: list })
-        }
-    }
-
-    handleClick = (event) => {
+    handleSearch = (event) => {
         this.props.onSearchPhotos(event.target.value);
     }
 
@@ -37,7 +30,7 @@ class HeaderX extends React.PureComponent {
             const functionCall = () => func.apply(this, arguments);
             clearTimeout(timeout);
             timeout = setTimeout(functionCall, time);
-        }
+        }  
     }
 
     handleChange = (event) => {
@@ -45,13 +38,13 @@ class HeaderX extends React.PureComponent {
             this.props.onFetchPhotos();
         }
         else {
-            this.debounceFn(this.handleClick, 300);
+            this.debounceFn(this.handleSearch, 300);
         }
     }
 
     handleKeypress = (event) => {
         if (event.keyCode === 13) {
-            this.handleClick(event.target.value)
+            this.handleSearch(event.target.value)
         }
     }
 
@@ -72,7 +65,7 @@ class HeaderX extends React.PureComponent {
                         placeholder="Search here"
                     />
                     <SearchOutlined id="SearchOutlined"
-                        onClick={(event) => this.searchPhotos(event)}
+                        onClick={(event) => this.props.onSearchPhotos(event)}
                     />
                 </Form>
             </Header>

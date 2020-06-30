@@ -20,7 +20,7 @@ class ImageList extends React.PureComponent {
     render() {
         console.log("Photos", this.props.photos)
         return (
-            <div id="image-container" ref={this.listRef} className="row">
+            <div id="image-container" ref={this.listRef}>
                 <InfiniteScroll
                     dataLength={this.props.photos ? this.props.photos.length : 0}
                     next={this.props.handleFetchMorePhotos}
