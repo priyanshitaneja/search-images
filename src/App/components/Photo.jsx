@@ -9,6 +9,7 @@
 // export default Photo;
 
 import React from 'react';
+import "../../styles/photo.css";
 
 class Photo extends React.PureComponent {
     constructor(props) {
@@ -17,15 +18,15 @@ class Photo extends React.PureComponent {
     }
 
     handleClick = (event) => {
-        document.getElementById('galleryImage').attr("src", event.target.src);
+        document.getElementById('thumbnailImage').attr("src", event.target.src);
     }
 
     render() {
         return (
-            <div className="" style={{ width: "30%" }}>
+            <div className="" >
                 <img
-                    data-target="#thumbnail"
-                    data-toggle="modal"
+                    // data-target="#thumbnail"
+                    // data-toggle="modal"
                     className="image"
                     src={this.props.source}
                     alt="Error, Please try again!"

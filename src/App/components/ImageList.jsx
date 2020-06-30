@@ -25,7 +25,8 @@ class ImageList extends React.PureComponent {
                     dataLength={this.props.photos ? this.props.photos.length : 0}
                     next={this.props.handleFetchMorePhotos}
                     hasMore={true}
-                    loader={ <Loader /> }
+                    loader={<Loader />}
+                    scrollableTarget="#image-container"
                     className=""
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
@@ -34,16 +35,18 @@ class ImageList extends React.PureComponent {
                     }
                 >
 
-                    {
-                        this.props.photos ?
-                            (this.props.photos.map(({ id, farm, secret, server }, i) => (
-                                <Photo
-                                    key={i}
-                                    source={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`}
-                                />
-                            ))
-                            ) : null
-                    }
+                    <div id="imageList">
+                        {
+                            this.props.photos ?
+                                (this.props.photos.map(({ id, farm, secret, server }, i) => (
+                                    <Photo
+                                        key={i}
+                                        source={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`}
+                                    />
+                                ))
+                                ) : null
+                        }
+                    </div>
 
                 </InfiniteScroll>
             </div>

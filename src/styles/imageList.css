@@ -1,4 +1,23 @@
 #image-container {
+    padding: 25px !important;
+    /* position: absolute; */
+    overflow-y: scroll;
+    height: 80%;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.infinite-scroll-component__outerdiv {
+    width: 100%;
+}
+
+.infinite-scroll-component {
     height: fit-content;
-    overflow: scroll;
+    width: 100%;
+}
+
+#imageList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 10px;
 }

@@ -8,7 +8,7 @@ const params = {
     format: 'json',
     method: `flickr.photos.getRecent`,
     nojsoncallback: 1,
-    per_page: 30,
+    per_page: 100,
     safe_search: 1
 }
 
@@ -106,7 +106,7 @@ export const searchPhotos = (text) => {
             format: 'json',
             method: `flickr.photos.search`,
             nojsoncallback: 1,
-            per_page: 100,
+            per_page: 10,
             tags: `${text}`,
             safe_search: 1
         }

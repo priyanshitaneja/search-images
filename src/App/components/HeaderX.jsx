@@ -29,17 +29,16 @@ class HeaderX extends React.PureComponent {
         return function () {
             const functionCall = () => func.apply(this, arguments);
             clearTimeout(timeout);
-            timeout = setTimeout(functionCall, 300);
-            this.handleSearch();
+            timeout = setTimeout(functionCall, time);
         } 
     }
 
     handleChange = (event) => {
-        if (event.target.value.length === 0) {
-            this.props.onFetchPhotos();
-        }
-        else {
-            this.debounceFn(this.handleSearch, 300);
+        if (event.target.value.trim() > 0) {
+        //     this.props.onFetchPhotos();
+        // }
+        // else {
+            this.debounceFn(event => this.handleSearch(event), 300);
         }
     }
 
