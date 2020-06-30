@@ -1,7 +1,7 @@
 .loader {
 	width: 50px;
 	height: 50px;
-	margin: 50px 47%;
+	margin: 20vh 47%;
 	border: 1px solid teal;
 	border-radius: 50%;
 	animation: 1s loader linear infinite;
@@ -15,7 +15,7 @@
 		position: absolute;
 		top: -.2em;
 		left: 50%;
-		border: .2em solid #056363;
+		border: .3em solid #056363;
 		border-radius: 50%;
 	}
 }

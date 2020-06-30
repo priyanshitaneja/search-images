@@ -1,5 +1,4 @@
 import * as actionTypes from "../../config/utils/constants";
-import flickrApi from "../../../apis/flickr";
 import axios from "axios";
 
 // const method = 'flickr.photos.getRecent';

@@ -21,7 +21,7 @@ class HeaderX extends React.PureComponent {
     }
 
     handleSearch = (event) => {
-        this.props.onSearchPhotos(event.target.value);
+        this.props.onSearchPhotos(event);
     }
 
     debounceFn = (func, time) => {
@@ -30,6 +30,7 @@ class HeaderX extends React.PureComponent {
             const functionCall = () => func.apply(this, arguments);
             clearTimeout(timeout);
             timeout = setTimeout(functionCall, 300);
+            this.handleSearch();
         } 
     }
 
@@ -60,7 +61,7 @@ class HeaderX extends React.PureComponent {
                         ref={this.inputRef}
                         className=""
                         onChange={(event) => this.handleChange(event)}
-                        onKeyPress={(event) => this.handleKeypress(event)}
+                        onKeyDown={(event) => this.handleKeypress(event)}
                         type="text"
                         placeholder="Search here"
                     />
